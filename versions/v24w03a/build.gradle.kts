@@ -3,7 +3,7 @@ plugins {
 }
 
 mache {
-    minecraftVersion = "23w51b"
+    minecraftVersion = "24w03a"
 
     repositories.register("sonatype snapshots") {
         url = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
