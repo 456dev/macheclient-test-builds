@@ -1,0 +1,20 @@
+--- a/net/minecraft/advancements/critereon/EntitySubPredicates.java
++++ b/net/minecraft/advancements/critereon/EntitySubPredicates.java
+@@ -173,7 +_,7 @@
+             this.getter = function;
+             this.codec = RecordCodecBuilder.mapCodec(
+                 instance -> instance.group(RegistryCodecs.homogeneousList(resourceKey).fieldOf("variant").forGetter(instance1 -> instance1.variants))
+-                        .apply(instance, holderSet -> new EntitySubPredicates.EntityHolderVariantPredicateType.Instance(holderSet))
++                        .apply(instance, holderSet -> new EntitySubPredicates.EntityHolderVariantPredicateType<V>.Instance(holderSet))
+             );
+         }
+ 
+@@ -216,7 +_,7 @@
+             this.getter = function;
+             this.codec = RecordCodecBuilder.mapCodec(
+                 instance -> instance.group(codec.fieldOf("variant").forGetter(instance1 -> instance1.variant))
+-                        .apply(instance, object -> new EntitySubPredicates.EntityVariantPredicateType.Instance(object))
++                        .apply(instance, object -> new EntitySubPredicates.EntityVariantPredicateType<V>.Instance(object))
+             );
+         }
+ 

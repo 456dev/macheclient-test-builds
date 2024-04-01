@@ -1,0 +1,19 @@
+--- a/net/minecraft/resources/HolderSetCodec.java
++++ b/net/minecraft/resources/HolderSetCodec.java
+@@ -12,6 +_,7 @@
+ import net.minecraft.core.HolderGetter;
+ import net.minecraft.core.HolderOwner;
+ import net.minecraft.core.HolderSet;
++import net.minecraft.core.HolderSet.Named;
+ import net.minecraft.core.Registry;
+ import net.minecraft.tags.TagKey;
+ import net.minecraft.util.ExtraCodecs;
+@@ -70,7 +_,7 @@
+ 
+     private static <E> DataResult<HolderSet<E>> lookupTag(HolderGetter<E> holderGetter, TagKey<E> tagKey) {
+         return holderGetter.get(tagKey)
+-            .map(DataResult::success)
++            .map((Named<E> holderSet) -> DataResult.success((HolderSet<E>)holderSet))
+             .orElseGet(() -> DataResult.error(() -> "Missing tag: '" + tagKey.location() + "' in '" + tagKey.registry().location() + "'"));
+     }
+ 

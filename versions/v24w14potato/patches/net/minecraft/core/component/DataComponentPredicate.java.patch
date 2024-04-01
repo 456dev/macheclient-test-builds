@@ -1,0 +1,24 @@
+--- a/net/minecraft/core/component/DataComponentPredicate.java
++++ b/net/minecraft/core/component/DataComponentPredicate.java
+@@ -4,6 +_,7 @@
+ import com.mojang.serialization.Codec;
+ import java.util.ArrayList;
+ import java.util.List;
++import java.util.Map;
+ import java.util.Objects;
+ import java.util.function.Predicate;
+ import java.util.stream.Collectors;
+@@ -15,10 +_,10 @@
+ public final class DataComponentPredicate implements Predicate<DataComponentMap> {
+     public static final Codec<DataComponentPredicate> CODEC = ExtraCodecs.unboundedDispatchMap(DataComponentType.CODEC, DataComponentType::codecOrThrow)
+         .xmap(
+-            map -> new DataComponentPredicate(map.entrySet().stream().map(TypedDataComponent::fromEntryUnchecked).collect(Collectors.toList())),
+-            dataComponentPredicate -> dataComponentPredicate.expectedComponents
++            map -> new DataComponentPredicate((((Map<DataComponentType<?>, Object>)map).entrySet().stream().map(TypedDataComponent::fromEntryUnchecked).collect(Collectors.toList()))), 
++                dataComponentPredicate -> (Map)(dataComponentPredicate.expectedComponents
+                     .stream()
+-                    .collect(Collectors.toMap(TypedDataComponent::type, TypedDataComponent::value))
++                    .collect(Collectors.toMap(TypedDataComponent::type, TypedDataComponent::value)))
+         );
+     public static final StreamCodec<RegistryFriendlyByteBuf, DataComponentPredicate> STREAM_CODEC = TypedDataComponent.STREAM_CODEC
+         .apply(ByteBufCodecs.list())

@@ -1,0 +1,19 @@
+--- a/net/minecraft/network/chat/LastSeenMessages.java
++++ b/net/minecraft/network/chat/LastSeenMessages.java
+@@ -8,6 +_,7 @@
+ import java.util.List;
+ import java.util.Optional;
+ import net.minecraft.network.FriendlyByteBuf;
++import net.minecraft.network.chat.MessageSignature.Packed;
+ import net.minecraft.util.SignatureUpdater;
+ 
+ public record LastSeenMessages(List<MessageSignature> entries) {
+@@ -31,7 +_,7 @@
+         public static final LastSeenMessages.Packed EMPTY = new LastSeenMessages.Packed(List.of());
+ 
+         public Packed(FriendlyByteBuf buffer) {
+-            this(buffer.readCollection(FriendlyByteBuf.limitValue(ArrayList::new, 20), MessageSignature.Packed::read));
++            this((List<MessageSignature.Packed>) buffer.readCollection(FriendlyByteBuf.limitValue(ArrayList::new, 20), MessageSignature.Packed::read));
+         }
+ 
+         public void write(FriendlyByteBuf buffer) {

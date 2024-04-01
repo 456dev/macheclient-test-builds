@@ -1,0 +1,16 @@
+--- a/net/minecraft/world/level/levelgen/DensityFunctions.java
++++ b/net/minecraft/world/level/levelgen/DensityFunctions.java
+@@ -294,11 +_,11 @@
+                     }
+                     break;
+                 case MIN:
+-                    double d1 = this.argument2.minValue();
++                    double d3 = this.argument2.minValue();
+ 
+                     for (int i2 = 0; i2 < array.length; i2++) {
+                         double d2 = array[i2];
+-                        array[i2] = d2 < d1 ? d2 : Math.min(d2, this.argument2.compute(contextProvider.forIndex(i2)));
++                        array[i2] = d2 < d3 ? d2 : Math.min(d2, this.argument2.compute(contextProvider.forIndex(i2)));
+                     }
+                     break;
+                 case MUL:

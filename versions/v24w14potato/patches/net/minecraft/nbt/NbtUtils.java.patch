@@ -1,0 +1,35 @@
+--- a/net/minecraft/nbt/NbtUtils.java
++++ b/net/minecraft/nbt/NbtUtils.java
+@@ -310,8 +_,8 @@
+                     indent(indentLevel + 1, stringBuilder);
+                 }
+ 
+-                int ix = list.stream().mapToInt(String::length).max().orElse(0);
+-                String stringx = Strings.repeat(" ", ix);
++                int i2x = list.stream().mapToInt(String::length).max().orElse(0);
++                String stringx = Strings.repeat(" ", i2x);
+ 
+                 for (int i2 = 0; i2 < list.size(); i2++) {
+                     if (i2 != 0) {
+@@ -337,10 +_,10 @@
+             case 11:
+                 IntArrayTag intArrayTag = (IntArrayTag)tag;
+                 int[] asIntArray = intArrayTag.getAsIntArray();
+-                int ix = 0;
++                int i3x = 0;
+ 
+                 for (int i3 : asIntArray) {
+-                    ix = Math.max(ix, String.format(Locale.ROOT, "%X", i3).length());
++                    i3x = Math.max(i3x, String.format(Locale.ROOT, "%X", i3).length());
+                 }
+ 
+                 int i1 = asIntArray.length;
+@@ -362,7 +_,7 @@
+                             stringBuilder.append(' ');
+                         }
+ 
+-                        stringBuilder.append(String.format(Locale.ROOT, "0x%0" + ix + "X", asIntArray[i2]));
++                        stringBuilder.append(String.format(Locale.ROOT, "0x%0" + i3x + "X", asIntArray[i2]));
+                     }
+                 } else {
+                     indent(indentLevel + 1, stringBuilder).append(" // Skipped, supply withBinaryBlobs true");

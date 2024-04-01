@@ -1,12 +1,12 @@
-//import io.papermc.sculptor.shared.util.MinecraftSide
+import io.papermc.sculptor.shared.util.MinecraftSide
 
 plugins {
     id("io.papermc.sculptor.version") version "1.0.2-SNAPSHOT"
 }
 
 mache {
-    minecraftVersion = "24w03a"
-//    minecraftJarType = MinecraftSide.CLIENT
+    minecraftVersion = "24w14potato"
+    minecraftJarType = MinecraftSide.CLIENT
 
 
     repositories.register("sonatype snapshots") {
