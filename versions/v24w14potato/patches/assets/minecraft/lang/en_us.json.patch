@@ -1,0 +1,36 @@
+--- a/assets/minecraft/lang/en_us.json
++++ b/assets/minecraft/lang/en_us.json
+@@ -7222,5 +_,32 @@
+   "tutorial.punch_tree.title": "Destroy the tree",
+   "tutorial.socialInteractions.description": "Press %s to open",
+   "tutorial.socialInteractions.title": "Social Interactions",
+-  "upgrade.minecraft.netherite_upgrade": "Netherite Upgrade"
++  "upgrade.minecraft.netherite_upgrade": "Netherite Upgrade",
++  "roll_factor.1": "We’re no strangers to love",
++  "roll_factor.2": "You know the rules and so do I",
++  "roll_factor.3": "A full commitment’s what I’m thinking of",
++  "roll_factor.4": "You wouldn’t get this from any other guy",
++  "roll_factor.5": "I just wanna tell you how I’m feeling",
++  "roll_factor.6": "Gotta make you understand",
++  "roll_factor.7": "Never gonna give you up",
++  "roll_factor.8": "Never gonna let you down",
++  "roll_factor.9": "Never gonna run around and desert you",
++  "roll_factor.10": "Never gonna make you cry",
++  "roll_factor.11": "Never gonna say goodbye",
++  "roll_factor.12": "Never gonna tell a lie and hurt you",
++  "roll_factor.13": "We’ve known each other for so long",
++  "roll_factor.14": "Your heart’s been aching but you’re too shy to say it",
++  "roll_factor.15": "Inside we both know what’s been going on",
++  "roll_factor.16": "We know the game and we’re gonna play it",
++  "roll_factor.17": "And if you ask me how I’m feeling",
++  "roll_factor.18": "Don’t tell me you’re too blind to see",
++  "roll_factor.19": "Never gonna give you up",
++  "roll_factor.20": "Never gonna let you down",
++  "roll_factor.21": "Never gonna run around and desert you",
++  "roll_factor.22": "Never gonna make you cry",
++  "roll_factor.23": "Never gonna say goodbye",
++  "roll_factor.24": "Never gonna tell a lie and hurt you",
++  "item.minecraft.rick": "Hmm, Whats this?",
++  "item.minecraft.rick.end": "Happy April 1st",
++  "item.minecraft.rick.roll_factor": "%s rolls"
+ }

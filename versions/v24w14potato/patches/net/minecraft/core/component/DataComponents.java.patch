@@ -1,0 +1,11 @@
+--- a/net/minecraft/core/component/DataComponents.java
++++ b/net/minecraft/core/component/DataComponents.java
+@@ -249,6 +_,8 @@
+     public static final DataComponentType<PotatoBaneComponent> POTATO_BANE = register(
+         "potato_bane", builder -> builder.persistent(PotatoBaneComponent.CODEC).networkSynchronized(PotatoBaneComponent.STREAM_CODEC)
+     );
++    
++    public static final DataComponentType<Integer> ROLL_FACTOR = register("roll_factor", builder -> builder.persistent(Codec.INT).networkSynchronized(ByteBufCodecs.INT));
+     public static final DataComponentMap COMMON_ITEM_COMPONENTS = DataComponentMap.builder()
+         .set(MAX_STACK_SIZE, 64)
+         .set(LORE, ItemLore.EMPTY)

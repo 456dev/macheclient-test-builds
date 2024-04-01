@@ -1,0 +1,12 @@
+--- /dev/null
++++ b/assets/minecraft/models/item/rick.json
+@@ -1,0 +_,9 @@
++{
++  "parent": "minecraft:item/generated",
++  "textures": {
++    "layer0": "minecraft:item/rick"
++  },
++  "overrides": [
++        { "predicate": { "hovered": 0.5 }, "model": "item/rick_roll" }
++    ]
++}

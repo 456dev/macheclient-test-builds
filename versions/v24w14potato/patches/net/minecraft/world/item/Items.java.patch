@@ -1,0 +1,24 @@
+--- a/net/minecraft/world/item/Items.java
++++ b/net/minecraft/world/item/Items.java
+@@ -21,6 +_,7 @@
+ import net.minecraft.world.entity.vehicle.Boat;
+ import net.minecraft.world.flag.FeatureFlags;
+ import net.minecraft.world.food.Foods;
++import net.minecraft.world.item.Item.Properties;
+ import net.minecraft.world.item.alchemy.PotionContents;
+ import net.minecraft.world.item.alchemy.Potions;
+ import net.minecraft.world.item.armortrim.TrimPatterns;
+@@ -2254,6 +_,13 @@
+     public static final Item CORRUPTED_POTATO_PEELS;
+     public static final Item HASH_BROWNS;
+     public static final Item POISONOUS_POTATO_PLANT;
++    
++    public static final Item RICK = registerItem("rick", new RickItem(new Item.Properties()
++        .stacksTo(1)
++        .component(DataComponents.ROLL_FACTOR, 0)
++        .component(DataComponents.VIEWS, 0)
++        .component(DataComponents.HOVERED, false))
++    );
+ 
+     public static Item registerBlock(Block block) {
+         return registerBlock(new BlockItem(block, new Item.Properties()));

@@ -1,0 +1,29 @@
+--- /dev/null
++++ b/net/minecraft/server/commands/PotatoCommand.java
+@@ -1,0 +_,26 @@
++package net.minecraft.server.commands;
++
++import static net.minecraft.commands.Commands.literal;
++
++import com.mojang.brigadier.Command;
++import com.mojang.brigadier.CommandDispatcher;
++import net.minecraft.ChatFormatting;
++import net.minecraft.commands.CommandSourceStack;
++import net.minecraft.network.chat.Component;
++
++public class PotatoCommand {
++
++  public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
++    dispatcher.register(
++        literal("potato")
++            .executes(commandContext -> {
++              commandContext.getSource()
++                  .sendSuccess(() -> Component.literal("Potato")
++                          .withStyle(ChatFormatting.GOLD),
++                      true);
++              return Command.SINGLE_SUCCESS;
++            })
++    );
++  }
++
++}

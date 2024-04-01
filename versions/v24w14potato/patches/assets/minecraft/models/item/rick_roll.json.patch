@@ -1,0 +1,9 @@
+--- /dev/null
++++ b/assets/minecraft/models/item/rick_roll.json
+@@ -1,0 +_,6 @@
++{
++  "parent": "minecraft:item/generated",
++  "textures": {
++    "layer0": "minecraft:item/rick_roll"
++  }
++}
