@@ -1,0 +1,34 @@
+--- a/net/minecraft/client/main/Main.java
++++ b/net/minecraft/client/main/Main.java
+@@ -194,13 +_,13 @@
+         };
+         thread.setUncaughtExceptionHandler(new DefaultUncaughtExceptionHandler(LOGGER));
+         Runtime.getRuntime().addShutdownHook(thread);
+-        final Minecraft minecraft = null;
++        Minecraft minecraft1 = null;
+ 
+         try {
+             Thread.currentThread().setName("Render thread");
+             RenderSystem.initRenderThread();
+             RenderSystem.beginInitialization();
+-            minecraft = new Minecraft(gameConfig);
++            minecraft1 = new Minecraft(gameConfig);
+             RenderSystem.finishInitialization();
+         } catch (SilentInitException var82) {
+             Util.shutdownExecutors();
+@@ -210,12 +_,12 @@
+             CrashReport crashReport1 = CrashReport.forThrowable(var83, "Initializing game");
+             CrashReportCategory crashReportCategory1 = crashReport1.addCategory("Initialization");
+             NativeModuleLister.addCrashSection(crashReportCategory1);
+-            Minecraft.fillReport(minecraft, null, gameConfig.game.launchVersion, null, crashReport1);
+-            Minecraft.crash(minecraft, gameConfig.location.gameDirectory, crashReport1);
++            Minecraft.fillReport(minecraft1, null, gameConfig.game.launchVersion, null, crashReport1);
++            Minecraft.crash(minecraft1, gameConfig.location.gameDirectory, crashReport1);
+             return;
+         }
+ 
+-        Minecraft minecraft1 = minecraft;
++        final Minecraft minecraft = minecraft1;
+         Thread thread1;
+         if (minecraft.renderOnThread()) {
+             thread1 = new Thread("Game thread") {
