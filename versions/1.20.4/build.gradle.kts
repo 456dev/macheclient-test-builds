@@ -1,10 +1,12 @@
+import io.papermc.sculptor.shared.util.MinecraftSide
+
 plugins {
-    id("io.papermc.sculptor.version") version "1.0.3"
+    id("io.papermc.sculptor.version") version "1.0.4-SNAPSHOT"
 }
 
 mache {
     minecraftVersion = "1.20.4"
-
+    minecraftJarType = MinecraftSide.CLIENT
     repositories.register("sonatype snapshots") {
         url = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
         includeGroups.add("org.vineflower")
