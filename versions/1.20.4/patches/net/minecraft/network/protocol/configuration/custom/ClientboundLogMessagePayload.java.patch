@@ -1,0 +1,31 @@
+--- /dev/null
++++ b/net/minecraft/network/protocol/configuration/custom/ClientboundLogMessagePayload.java
+@@ -1,0 +_,28 @@
++package net.minecraft.network.protocol.configuration.custom;
++
++import javax.annotation.Nullable;
++import net.minecraft.network.FriendlyByteBuf;
++import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
++import net.minecraft.resources.ResourceLocation;
++
++public record ClientboundLogMessagePayload(String message, @Nullable Integer value) implements
++    CustomPacketPayload {
++  
++  public static final ResourceLocation ID = new ResourceLocation("custom:log_message");
++
++  
++  public ClientboundLogMessagePayload(FriendlyByteBuf buffer) {
++    this(buffer.readUtf(), buffer.readNullable(FriendlyByteBuf::readInt));
++  }
++  
++  @Override
++  public void write(FriendlyByteBuf buffer) {
++    buffer.writeUtf(this.message);
++    buffer.writeNullable(this.value, FriendlyByteBuf::writeInt);
++  }
++  
++  @Override
++  public ResourceLocation id() {
++    return ID;
++  }
++}

@@ -1,0 +1,38 @@
+--- a/net/minecraft/client/multiplayer/ClientConfigurationPacketListenerImpl.java
++++ b/net/minecraft/client/multiplayer/ClientConfigurationPacketListenerImpl.java
+@@ -8,12 +_,15 @@
+ import net.minecraft.network.TickablePacketListener;
+ import net.minecraft.network.chat.Component;
+ import net.minecraft.network.protocol.PacketUtils;
++import net.minecraft.network.protocol.common.ServerboundCustomPayloadPacket;
+ import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+ import net.minecraft.network.protocol.configuration.ClientConfigurationPacketListener;
+ import net.minecraft.network.protocol.configuration.ClientboundFinishConfigurationPacket;
+ import net.minecraft.network.protocol.configuration.ClientboundRegistryDataPacket;
+ import net.minecraft.network.protocol.configuration.ClientboundUpdateEnabledFeaturesPacket;
+ import net.minecraft.network.protocol.configuration.ServerboundFinishConfigurationPacket;
++import net.minecraft.network.protocol.configuration.custom.ClientboundLogMessagePayload;
++import net.minecraft.network.protocol.configuration.custom.ServerboundLogMessageAckPayload;
+ import net.minecraft.world.flag.FeatureFlagSet;
+ import net.minecraft.world.flag.FeatureFlags;
+ import org.slf4j.Logger;
+@@ -43,7 +_,18 @@
+ 
+     @Override
+     protected void handleCustomPayload(CustomPacketPayload payload) {
+-        this.handleUnknownCustomPayload(payload);
++        if (payload instanceof ClientboundLogMessagePayload clientboundLogMessagePayload) {
++            LOGGER.info("Received log message: {}", clientboundLogMessagePayload.message());
++            if (clientboundLogMessagePayload.value() != null) {
++                LOGGER.info("  Value: {}", clientboundLogMessagePayload.value());
++            }
++            this.connection.send(new ServerboundCustomPayloadPacket(
++                ServerboundLogMessageAckPayload.INSTANCE));
++        } else {
++            this.handleUnknownCustomPayload(payload);
++        }
++
++
+     }
+ 
+     private void handleUnknownCustomPayload(CustomPacketPayload payload) {

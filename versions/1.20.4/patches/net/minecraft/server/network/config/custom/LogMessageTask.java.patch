@@ -1,0 +1,41 @@
+--- /dev/null
++++ b/net/minecraft/server/network/config/custom/LogMessageTask.java
+@@ -1,0 +_,38 @@
++package net.minecraft.server.network.config.custom;
++
++import java.util.function.Consumer;
++import net.minecraft.network.protocol.Packet;
++import net.minecraft.network.protocol.common.ClientboundCustomPayloadPacket;
++import net.minecraft.network.protocol.configuration.custom.ClientboundLogMessagePayload;
++import net.minecraft.server.network.ConfigurationTask;
++import org.jetbrains.annotations.NotNull;
++import org.jetbrains.annotations.Nullable;
++
++public class LogMessageTask implements ConfigurationTask {
++  // not a namespaced id, just a string. feels maybe like a footgun?
++  public static final ConfigurationTask.Type TYPE = new ConfigurationTask.Type("custom:log_message");
++
++  private final String message;
++  private final @Nullable Integer value;
++
++  public LogMessageTask(String message, @Nullable Integer value) {
++    this.message = message;
++    this.value = value;
++  }
++
++  public LogMessageTask(String message) {
++    this(message, null);
++  }
++
++  @Override
++  public void start(@NotNull Consumer<Packet<?>> task) {
++    System.out.println("sending log message");
++    task.accept(new ClientboundCustomPayloadPacket(new ClientboundLogMessagePayload(this.message, this.value)));
++    
++  }
++
++  @Override
++  public Type type() {
++    return TYPE;
++  }
++}

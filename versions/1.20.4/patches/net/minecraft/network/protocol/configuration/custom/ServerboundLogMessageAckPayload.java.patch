@@ -1,0 +1,30 @@
+--- /dev/null
++++ b/net/minecraft/network/protocol/configuration/custom/ServerboundLogMessageAckPayload.java
+@@ -1,0 +_,27 @@
++package net.minecraft.network.protocol.configuration.custom;
++
++import net.minecraft.network.FriendlyByteBuf;
++import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
++import net.minecraft.resources.ResourceLocation;
++import org.jetbrains.annotations.NotNull;
++
++public record ServerboundLogMessageAckPayload() implements CustomPacketPayload {
++
++  public static final ResourceLocation ID = new ResourceLocation("custom:log_message_ack");
++
++  public ServerboundLogMessageAckPayload(FriendlyByteBuf buffer) {
++    this();
++  }
++
++  @Override
++  public void write(@NotNull FriendlyByteBuf buffer) {
++    
++  }
++
++  @Override
++  public ResourceLocation id() {
++    return ID;
++  }
++  
++  public static final ServerboundLogMessageAckPayload INSTANCE = new ServerboundLogMessageAckPayload();
++}

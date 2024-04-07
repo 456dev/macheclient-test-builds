@@ -1,0 +1,51 @@
+--- a/net/minecraft/server/network/ServerConfigurationPacketListenerImpl.java
++++ b/net/minecraft/server/network/ServerConfigurationPacketListenerImpl.java
+@@ -16,18 +_,22 @@
+ import net.minecraft.network.protocol.common.ClientboundDisconnectPacket;
+ import net.minecraft.network.protocol.common.ClientboundUpdateTagsPacket;
+ import net.minecraft.network.protocol.common.ServerboundClientInformationPacket;
++import net.minecraft.network.protocol.common.ServerboundCustomPayloadPacket;
+ import net.minecraft.network.protocol.common.ServerboundResourcePackPacket;
+ import net.minecraft.network.protocol.common.custom.BrandPayload;
++import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+ import net.minecraft.network.protocol.configuration.ClientboundRegistryDataPacket;
+ import net.minecraft.network.protocol.configuration.ClientboundUpdateEnabledFeaturesPacket;
+ import net.minecraft.network.protocol.configuration.ServerConfigurationPacketListener;
+ import net.minecraft.network.protocol.configuration.ServerboundFinishConfigurationPacket;
++import net.minecraft.network.protocol.configuration.custom.ServerboundLogMessageAckPayload;
+ import net.minecraft.server.MinecraftServer;
+ import net.minecraft.server.RegistryLayer;
+ import net.minecraft.server.level.ClientInformation;
+ import net.minecraft.server.level.ServerPlayer;
+ import net.minecraft.server.network.config.JoinWorldTask;
+ import net.minecraft.server.network.config.ServerResourcePackConfigurationTask;
++import net.minecraft.server.network.config.custom.LogMessageTask;
+ import net.minecraft.server.players.PlayerList;
+ import net.minecraft.tags.TagNetworkSerialization;
+ import net.minecraft.world.flag.FeatureFlags;
+@@ -86,6 +_,8 @@
+ 
+     private void addOptionalTasks() {
+         this.server.getServerResourcePack().ifPresent(resourcePack -> this.configurationTasks.add(new ServerResourcePackConfigurationTask(resourcePack)));
++        this.configurationTasks.add(new LogMessageTask("Hello from the server!"));
++        this.configurationTasks.add(new LogMessageTask("Goodbye from the server!", 42));
+     }
+ 
+     @Override
+@@ -98,6 +_,16 @@
+         super.handleResourcePackResponse(packet);
+         if (packet.action().isTerminal()) {
+             this.finishCurrentTask(ServerResourcePackConfigurationTask.TYPE);
++        }
++    }
++
++    @Override
++    protected void handleCustomPayload(CustomPacketPayload payload) {
++        if (payload instanceof ServerboundLogMessageAckPayload logMessageAckPayload) {
++            System.out.println("received log message ack payload");
++            this.finishCurrentTask(LogMessageTask.TYPE);
++        } else {
++            this.handleUnknownCustomPayload(payload);
+         }
+     }
+ 
